@@ -1,0 +1,27 @@
+﻿@page
+@model Server.Pages.AboutModel
+@{
+	var title =
+		Resources.PageTitles.About;
+
+	ViewData["Title"] = title;
+}
+
+<h3>
+	@(title)
+</h3>
+
+<hr />
+
+<div class="row">
+	<div class="col">
+		من داریوش تصدیقی هستم، متولد بهمن‌ماه ۱۳۵۱
+		و
+		مدرس دوره ASP.NET Core Razor Pages
+	</div>
+	<div class="col">
+		<img src="~/images/Dariush.jpg" alt="Dariush Tasdighi" asp-append-version=true />
+	</div>
+</div>
+
+<hr />

@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<Nullable>enable</Nullable>
+		<TargetFramework>net6.0</TargetFramework>
+		<!--<ImplicitUsings>enable</ImplicitUsings>-->
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Dtat\Dtat.csproj" />
+		<ProjectReference Include="..\Domain\Domain.csproj" />
+		<ProjectReference Include="..\Resources\Resources.csproj" />
+		<ProjectReference Include="..\ViewModels\ViewModels.csproj" />
+		<ProjectReference Include="..\Persistence\Persistence.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="wwwroot\js\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.2">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+</Project>
