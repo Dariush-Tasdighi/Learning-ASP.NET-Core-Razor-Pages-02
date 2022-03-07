@@ -2,12 +2,10 @@
 Session (13)
 **************************************************
 
-)
+1)
 Install Packages:
 
 	In 'Persistence':
-
-
 
 		Microsoft.EntityFrameworkCore.SqlServer
 
@@ -27,7 +25,7 @@ Install Packages:
 			Castle.Core
 			Microsoft.EntityFrameworkCore
 
-)
+2)
 - Create Resource file in Resources project:
 
 	DataDictionary.resx		(public)
@@ -48,8 +46,69 @@ Install Packages:
 		</EmbeddedResource>
 	</ItemGroup>
 
-)
+3)
 	Use resources in Index, About and Contact pages for their titles
 
-)
+4)
 	Create a middleware in program.cs
+
+5)
+	Domain Models -> Domain -> Culture01
+
+	Data Access Layer -> Persistence -> DatabaseContext01
+
+		Database.EnsureDeleted(); 
+		Database.EnsureCreated();
+
+	Presentation Layer -> Server -> Pages -> Admin -> Cultures01 -> Index
+
+	Presentation Layer -> Server -> appsettings.Development.json -> ConnectionStrings -> ConnectionString01
+
+	Presentation Layer -> Server -> Program.cs ->
+
+		var connectionString =
+			builder.Configuration.GetConnectionString("ConnectionString01");
+
+	Presentation Layer -> Server -> Program.cs ->
+
+		builder.Services.AddDbContext<Persistence.DatabaseContext01>(options =>
+		{
+			options
+				// using Microsoft.EntityFrameworkCore;
+				.UseLazyLoadingProxies()
+
+				// using Microsoft.EntityFrameworkCore;
+				.UseSqlServer(connectionString: connectionString);
+		});
+
+**************************************************
+Session (14)
+**************************************************
+
+1)
+	Domain Models -> Domain -> Culture02
+
+	Data Access Layer -> Persistence -> DatabaseContext02 [Database.EnsureCreated();]
+
+	Presentation Layer -> Server -> Pages -> Admin -> Cultures02 -> Index
+
+	Presentation Layer -> Server -> appsettings.Development.json -> ConnectionStrings -> ConnectionString02
+
+	Presentation Layer -> Server -> Program.cs ->
+
+		var connectionString =
+			builder.Configuration.GetConnectionString("ConnectionString02");
+
+2)
+	Domain Models -> Domain -> Culture03
+
+	Data Access Layer -> Persistence -> DatabaseContext03 [Database.EnsureCreated();]
+
+	Presentation Layer -> Server -> Pages -> Admin -> Cultures02 -> Index
+
+	Presentation Layer -> Server -> appsettings.Development.json -> ConnectionStrings -> ConnectionString03
+
+	Presentation Layer -> Server -> Program.cs ->
+
+		var connectionString =
+			builder.Configuration.GetConnectionString("ConnectionString03");

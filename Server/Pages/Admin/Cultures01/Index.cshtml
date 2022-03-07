@@ -1,5 +1,23 @@
 ﻿@page
 @model Server.Pages.Admin.Cultures01.IndexModel
+@{
+	var pageTitle =
+		$"{Resources.DataDictionary.ListOf}{Resources.DataDictionary.Culture}";
+
+	ViewData["Title"] = pageTitle;
+}
+
+<h3>
+	@(pageTitle)
+</h3>
+
+<div class="row">
+	<div class="col">
+		<a asp-page="Create">@(Resources.ButtonCaptions.Create)</a>
+	</div>
+</div>
+
+<hr />
 
 @if (Model.Cultures != null)
 {

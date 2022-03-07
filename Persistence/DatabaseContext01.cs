@@ -2,9 +2,10 @@
 {
 	public class DatabaseContext01 : Microsoft.EntityFrameworkCore.DbContext
 	{
-		public DatabaseContext01
-			(Microsoft.EntityFrameworkCore.DbContextOptions<DatabaseContext01> options) : base(options: options)
+		public DatabaseContext01(Microsoft.EntityFrameworkCore
+			.DbContextOptions<DatabaseContext01> options) : base(options: options)
 		{
+			//Database.EnsureDeleted();
 			Database.EnsureCreated();
 		}
 

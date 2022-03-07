@@ -1,14 +1,14 @@
 ﻿@page
 @model Server.Pages.IndexModel
 @{
-	var title =
+	var pageTitle =
 		Resources.PageTitles.Index;
 
-	ViewData["Title"] = title;
+	ViewData["PageTitle"] = pageTitle;
 }
 
 <h3>
-	@(title)
+	@(pageTitle)
 </h3>
 
 <hr />
@@ -21,12 +21,14 @@
 
 <div class="row">
 	<div class="col">
-		سورس‌کد این پروژه را می‌توانید از نشانی ذیل دانلود نمایید:
+		@(Resources.DataDictionary.SourceCode)
 
 		<br />
 
 		<div dir="ltr">
-			<a href="https://github.com/Dariush-Tasdighi/ASP.NET-Core-Razor-Pages-Simple-Template" target="_blank">https://github.com/Dariush-Tasdighi/ASP.NET-Core-Razor-Pages-Simple-Template</a>
+			<a href="https://github.com/Dariush-Tasdighi/Learning-ASP.NET-Core-Razor-Pages-02" target="_blank">
+				https://github.com/Dariush-Tasdighi/Learning-ASP.NET-Core-Razor-Pages-02
+			</a>
 		</div>
 	</div>
 </div>

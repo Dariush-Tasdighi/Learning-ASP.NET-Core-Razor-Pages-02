@@ -14,6 +14,12 @@
 		/// New
 		/// </summary>
 		[System.ComponentModel.DataAnnotations.Key]
+
+		/// <summary>
+		/// New
+		/// </summary>
+		[System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated(databaseGeneratedOption:
+			System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
 		public int Code { get; set; }
 		// **********
 
@@ -29,7 +35,14 @@
 		/// <summary>
 		/// New
 		/// </summary>
-		[System.ComponentModel.DataAnnotations.MaxLength(length: 50)]
+		//[System.ComponentModel.DataAnnotations.MaxLength
+		//	(length: 5)]
+
+		//[System.ComponentModel.DataAnnotations.StringLength
+		//	(maximumLength: 5)]
+
+		[System.ComponentModel.DataAnnotations.StringLength
+			(maximumLength: 5, MinimumLength = 2)]
 		public string? Name { get; set; }
 		// **********
 
@@ -37,7 +50,8 @@
 		/// <summary>
 		/// New
 		/// </summary>
-		[System.ComponentModel.DataAnnotations.MaxLength(length: 50)]
+		[System.ComponentModel.DataAnnotations.StringLength
+			(maximumLength: 50)]
 		public string? Title { get; set; }
 		// **********
 

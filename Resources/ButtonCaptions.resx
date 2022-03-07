@@ -117,70 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Blog" xml:space="preserve">
-    <value>وبلاگ</value>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
   </data>
-  <data name="CellPhoneNumber" xml:space="preserve">
-    <value>شماره تلفن همراه</value>
+  <data name="BackToList" xml:space="preserve">
+    <value>Back to List</value>
   </data>
-  <data name="Culture" xml:space="preserve">
-    <value>زبان</value>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
   </data>
-  <data name="Cultures" xml:space="preserve">
-    <value>زبان‌ها</value>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
   </data>
-  <data name="Description" xml:space="preserve">
-    <value>توضیحات</value>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
   </data>
-  <data name="EmailAddress" xml:space="preserve">
-    <value>نشانی پست الکترونیکی</value>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
   </data>
-  <data name="FullName" xml:space="preserve">
-    <value>نام و نام خانوادگی</value>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
   </data>
-  <data name="Id" xml:space="preserve">
-    <value>شناسه</value>
-  </data>
-  <data name="InsertDateTime" xml:space="preserve">
-    <value>زمان درج</value>
-  </data>
-  <data name="IsActive" xml:space="preserve">
-    <value>فعال</value>
-  </data>
-  <data name="List" xml:space="preserve">
-    <value>فهرست</value>
-  </data>
-  <data name="ListOf" xml:space="preserve">
-    <value>فهرست </value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>نام</value>
-  </data>
-  <data name="Ordering" xml:space="preserve">
-    <value>چیدمان</value>
-  </data>
-  <data name="SiteAuthor" xml:space="preserve">
-    <value>داریوش تصدیقی</value>
-  </data>
-  <data name="Sites" xml:space="preserve">
-    <value>سایت‌ها</value>
-  </data>
-  <data name="SiteTitle" xml:space="preserve">
-    <value>متخصصین ایرانی</value>
-  </data>
-  <data name="SocialNetworks" xml:space="preserve">
-    <value>شبکه‌های اجتماعی</value>
-  </data>
-  <data name="SourceCode" xml:space="preserve">
-    <value>سورس‌کد</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>عنوان</value>
-  </data>
-  <data name="UpdateDateTime" xml:space="preserve">
-    <value>زمان ویرایش</value>
-  </data>
-  <data name="Websites" xml:space="preserve">
-    <value>وب‌سایت‌ها</value>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
   </data>
 </root>

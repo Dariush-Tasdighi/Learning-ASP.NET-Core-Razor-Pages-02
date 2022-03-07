@@ -44,23 +44,27 @@
 		// **********
 
 		// **********
-		[System.ComponentModel.DataAnnotations.MaxLength(length: 50)]
+		[System.ComponentModel.DataAnnotations.StringLength
+			(maximumLength: 5, MinimumLength = 2)]
 
 		// New
 		//[System.ComponentModel.DataAnnotations.Required]
 		[System.ComponentModel.DataAnnotations.Required
 			(AllowEmptyStrings = false)]
-		public string? Name { get; set; }
+		public string Name { get; set; }
+		//public string? Name { get; set; }
 		// **********
 
 		// **********
-		[System.ComponentModel.DataAnnotations.MaxLength(length: 50)]
+		[System.ComponentModel.DataAnnotations.StringLength
+			(maximumLength: 50)]
 
 		// New
 		//[System.ComponentModel.DataAnnotations.Required]
 		[System.ComponentModel.DataAnnotations.Required
 			(AllowEmptyStrings = false)]
-		public string? Title { get; set; }
+		public string Title { get; set; }
+		//public string? Title { get; set; }
 		// **********
 
 		// **********

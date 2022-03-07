@@ -1,3 +1,27 @@
 ﻿@{
-	Layout = "Layouts/_Layout";
+	//Layout = "Layouts/_Layout";
+
+	var cultureName =
+		System.Threading.Thread
+		.CurrentThread.CurrentUICulture.Name.ToUpper();
+
+	switch (cultureName)
+	{
+		case "FA":
+		case "AR":
+		{
+			Layout =
+				"Layouts/Rtl/_Layout";
+
+			break;
+		}
+
+		default:
+		{
+			Layout =
+				"Layouts/Ltr/_Layout";
+
+			break;
+		}
+	}
 }

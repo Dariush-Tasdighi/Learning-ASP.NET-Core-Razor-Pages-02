@@ -1,8 +1,8 @@
 ﻿<header>
 	<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-bottom box-shadow fixed-top">
 		<div class="container">
-			<a class="navbar-brand" asp-area="" asp-page="Index">
-				متخصصین ایرانی
+			<a class="navbar-brand" asp-page="Index">
+				@(Resources.DataDictionary.SiteTitle)
 			</a>
 
 			<button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,15 +12,21 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item">
-						<a class="nav-link text-dark" asp-area="" asp-page="Index">خانه</a>
+						<a class="nav-link text-dark" asp-page="/Index">
+							@(Resources.PageTitles.Index)
+						</a>
 					</li>
 
 					<li class="nav-item">
-						<a class="nav-link text-dark" asp-area="" asp-page="About">درباره ما</a>
+						<a class="nav-link text-dark" asp-page="/About">
+							@(Resources.PageTitles.About)
+						</a>
 					</li>
 
 					<li class="nav-item">
-						<a class="nav-link text-dark" asp-area="" asp-page="Contact">تماس با ما</a>
+						<a class="nav-link text-dark" asp-page="/Contact">
+							@(Resources.PageTitles.Contact)
+						</a>
 					</li>
 				</ul>
 			</div>

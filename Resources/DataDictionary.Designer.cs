@@ -61,11 +61,47 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Blog.
+        /// </summary>
+        public static string Blog {
+            get {
+                return ResourceManager.GetString("Blog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cell Phone Number.
+        /// </summary>
+        public static string CellPhoneNumber {
+            get {
+                return ResourceManager.GetString("CellPhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cultures.
+        /// </summary>
+        public static string Cultures {
+            get {
+                return ResourceManager.GetString("Cultures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Description {
             get {
                 return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email Address.
+        /// </summary>
+        public static string EmailAddress {
+            get {
+                return ResourceManager.GetString("EmailAddress", resourceCulture);
             }
         }
         
@@ -106,6 +142,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to List.
+        /// </summary>
+        public static string List {
+            get {
+                return ResourceManager.GetString("List", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of .
+        /// </summary>
+        public static string ListOf {
+            get {
+                return ResourceManager.GetString("ListOf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
@@ -124,6 +178,42 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dariush Tasdighi.
+        /// </summary>
+        public static string SiteAuthor {
+            get {
+                return ResourceManager.GetString("SiteAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Iranian Experts.
+        /// </summary>
+        public static string SiteTitle {
+            get {
+                return ResourceManager.GetString("SiteTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Social Networks.
+        /// </summary>
+        public static string SocialNetworks {
+            get {
+                return ResourceManager.GetString("SocialNetworks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source Code.
+        /// </summary>
+        public static string SourceCode {
+            get {
+                return ResourceManager.GetString("SourceCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Title.
         /// </summary>
         public static string Title {
@@ -138,6 +228,15 @@ namespace Resources {
         public static string UpdateDateTime {
             get {
                 return ResourceManager.GetString("UpdateDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Websites.
+        /// </summary>
+        public static string Websites {
+            get {
+                return ResourceManager.GetString("Websites", resourceCulture);
             }
         }
     }

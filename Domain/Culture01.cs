@@ -31,10 +31,14 @@
 		// **********
 
 		// **********
+		[System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated(databaseGeneratedOption:
+			System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None)]
 		public System.DateTime InsertDateTime { get; set; }
 		// **********
 
 		// **********
+		[System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated(databaseGeneratedOption:
+			System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None)]
 		public System.DateTime UpdateDateTime { get; set; }
 		// **********
 	}

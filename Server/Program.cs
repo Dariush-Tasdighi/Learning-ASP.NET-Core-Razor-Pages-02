@@ -28,13 +28,26 @@ builder.Services.AddRazorPages();
 var connectionString =
 	builder.Configuration.GetConnectionString("ConnectionString01");
 
+//var connectionString =
+//	builder.Configuration.GetConnectionString("ConnectionString02");
+
+//var connectionString =
+//	builder.Configuration.GetConnectionString("ConnectionString03");
+
+//var connectionString =
+//	builder.Configuration.GetConnectionString("ConnectionString04");
+
+//var connectionString =
+//	builder.Configuration.GetConnectionString("ConnectionString05");
+
 // AddDbContext -> using Microsoft.Extensions.DependencyInjection;
 builder.Services.AddDbContext<Persistence.DatabaseContext01>(options =>
 {
 	options
 		// using Microsoft.EntityFrameworkCore;
-		.UseLazyLoadingProxies()
+		.UseLazyLoadingProxies();
 
+	options
 		// using Microsoft.EntityFrameworkCore;
 		.UseSqlServer(connectionString: connectionString);
 });
@@ -70,6 +83,9 @@ app.Use(async (context, next) =>
 {
 	var cultureInfo =
 		new System.Globalization.CultureInfo(name: "fa");
+
+	//var cultureInfo =
+	//	new System.Globalization.CultureInfo(name: "en");
 
 	System.Threading.Thread.CurrentThread.CurrentCulture = cultureInfo;
 	System.Threading.Thread.CurrentThread.CurrentUICulture = cultureInfo;
