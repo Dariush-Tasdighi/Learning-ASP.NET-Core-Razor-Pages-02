@@ -1,6 +1,37 @@
 ﻿**************************************************
 Session (13)
 **************************************************
+1)
+- Create Resource file in Resources project:
+
+	DataDictionary.resx		(public)
+	DataDictionary.fa.resx	(public)
+
+	<ItemGroup>
+		<Compile Update="DataDictionary.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>DataDictionary.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="DataDictionary.resx">
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>DataDictionary.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+
+2)
+	Use resources in Index, About and Contact pages for their titles
+
+3)
+	Create a middleware in program.cs
+
+
+**************************************************
+Session (14)
+**************************************************
 
 1)
 Install Packages:
@@ -26,33 +57,6 @@ Install Packages:
 			Microsoft.EntityFrameworkCore
 
 2)
-- Create Resource file in Resources project:
-
-	DataDictionary.resx		(public)
-	DataDictionary.fa.resx	(public)
-
-	<ItemGroup>
-		<Compile Update="DataDictionary.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>DataDictionary.resx</DependentUpon>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<EmbeddedResource Update="DataDictionary.resx">
-			<Generator>PublicResXFileCodeGenerator</Generator>
-			<LastGenOutput>DataDictionary.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-	</ItemGroup>
-
-3)
-	Use resources in Index, About and Contact pages for their titles
-
-4)
-	Create a middleware in program.cs
-
-5)
 	Domain Models -> Domain -> Culture01
 
 	Data Access Layer -> Persistence -> DatabaseContext01
@@ -82,7 +86,7 @@ Install Packages:
 		});
 
 **************************************************
-Session (14)
+Session (15)
 **************************************************
 
 1)

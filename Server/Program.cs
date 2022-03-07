@@ -81,11 +81,11 @@ app.UseStaticFiles();
 
 app.Use(async (context, next) =>
 {
-	var cultureInfo =
-		new System.Globalization.CultureInfo(name: "fa");
-
 	//var cultureInfo =
-	//	new System.Globalization.CultureInfo(name: "en");
+	//	new System.Globalization.CultureInfo(name: "fa");
+
+	var cultureInfo =
+		new System.Globalization.CultureInfo(name: "en");
 
 	System.Threading.Thread.CurrentThread.CurrentCulture = cultureInfo;
 	System.Threading.Thread.CurrentThread.CurrentUICulture = cultureInfo;
