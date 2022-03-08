@@ -8,14 +8,19 @@
 
 	<ItemGroup>
 		<Compile Update="ButtonCaptions.Designer.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>ButtonCaptions.resx</DependentUpon>
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>ButtonCaptions.resx</DependentUpon>
 		</Compile>
 		<Compile Update="DataDictionary.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
 			<DependentUpon>DataDictionary.resx</DependentUpon>
+		</Compile>
+		<Compile Update="LableCaptions.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>LableCaptions.resx</DependentUpon>
 		</Compile>
 		<Compile Update="PageTitles.Designer.cs">
 			<DesignTime>True</DesignTime>
@@ -26,12 +31,16 @@
 
 	<ItemGroup>
 		<EmbeddedResource Update="ButtonCaptions.resx">
-		  <Generator>PublicResXFileCodeGenerator</Generator>
-		  <LastGenOutput>ButtonCaptions.Designer.cs</LastGenOutput>
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>ButtonCaptions.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="DataDictionary.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>DataDictionary.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="LableCaptions.resx">
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>LableCaptions.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="PageTitles.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>

@@ -1,6 +1,10 @@
 ﻿@{
 	var cultureName =
-		System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLower();
+		System.Threading.Thread
+		.CurrentThread.CurrentUICulture.Name
+		.Substring(startIndex: 0, length: 2)
+		.ToLower()
+		;
 }
 
 <!doctype html>

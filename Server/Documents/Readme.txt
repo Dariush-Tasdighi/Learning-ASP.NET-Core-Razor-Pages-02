@@ -20,7 +20,7 @@ Session (13)
 
 	5
 
-		fa-IR	en-US	en-US	fr-FR
+		fa-IR	en-US	en-UK	fr-FR
 
 4)
 	We should have one and only one master resource!
@@ -30,9 +30,9 @@ Session (13)
 
 	We can have zero or more slave resources!
 
-		X.fa.rest
-		X.fa-IR.rest
-		X.fr-FR.rest
+		X.fa.resx
+		X.fa-IR.resx
+		X.fr-FR.resx
 
 5)
 	Steps
@@ -40,7 +40,7 @@ Session (13)
 		A. Create a master resource file (X.resx)
 		B. Change the access modifier to 'Public'
 		C. Add some key value in master resource file
-			key should not have and (.) or spacebar!
+			Name should not have and (.) or spacebar!
 		D. Run custom tool
 		E. Create a new resource (X.fa.resx)
 		F. Copy all key value from master resource file to slave resource file
@@ -125,27 +125,29 @@ Session (13)
 		Shared:
 			PartialViews:
 				_ChangeCulture.cshtml
+**************************************************
 
-					(Referer)
-
-14)
+**************************************************
+Session (14)
+**************************************************
+1)
 	Pages:
 		ChangeCulture.cshtml
 			httpReferer!
 
-15)
+2)
 	Infrastructure:
 		Middlewares:
 			CultureCookieHandlingMiddleware.cs
 
-16)
+3)
 	Program.cs:
 		app.UseMiddleware
 			<Infrastructure.Middlewares.CultureCookieHandlingMiddleware>();
 **************************************************
 
 **************************************************
-Session (14)
+Session (15)
 **************************************************
 
 1)
