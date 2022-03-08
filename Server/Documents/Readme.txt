@@ -5,6 +5,13 @@ Session (13)
 	Run application and check it
 
 2)
+	Resource Philosophy
+		Multilingual
+			کشورهای عربی
+		شناسه کاربر -> شناسه کاربری
+		لهجه‌ها
+
+3)
 	Culture -> Almost -> Language
 
 	2
@@ -15,18 +22,19 @@ Session (13)
 
 		fa-IR	en-US	en-US	fr-FR
 
-3)
+4)
 	We should have one and only one master resource!
 		It's better master be in english!
 
+		X.resx
+
 	We can have zero or more slave resources!
 
-	X.resx
-	X.fa.rest
-	X.fa-IR.rest
-	X.fr-FR.rest
+		X.fa.rest
+		X.fa-IR.rest
+		X.fr-FR.rest
 
-4)
+5)
 	Steps
 
 		A. Create a master resource file (X.resx)
@@ -40,7 +48,7 @@ Session (13)
 		H. Slave resource files should not have designer!
 		I. Check the 'Resources.csproj' file
 
-5)
+6)
 	Shared -> in 'Resources' project -> Create Resource file:
 
 		DataDictionary.resx		(Public)(Run custom tool)
@@ -60,7 +68,7 @@ Session (13)
 				<LastGenOutput>DataDictionary.Designer.cs</LastGenOutput>
 			</EmbeddedResource>
 		</ItemGroup>
-6)
+7)
 	Use resources in below files:
 
 		Pages ->
@@ -68,11 +76,11 @@ Session (13)
 			About
 			Contact
 
-7)
+8)
 	Pages:
 		_ViewStart.cshtml
 
-8)
+9)
 	Pages:
 		Shared:
 			Layouts:
@@ -81,7 +89,7 @@ Session (13)
 				Rtl:
 					_Layout.cshtml
 
-9)
+10)
 	wwwroot:
 		css:
 			ltr:
@@ -89,7 +97,7 @@ Session (13)
 			Rtl:
 				site.css
 
-10)
+11)
 	libman.json
 
 		{
@@ -97,7 +105,7 @@ Session (13)
 			"destination": "wwwroot/lib/flag-icon-css/"
 		}
 
-11)
+12)
 	Pages:
 		Shared:
 			PartialViews:
@@ -112,7 +120,7 @@ Session (13)
 					_Scripts.cshtml
 					_StyleSheets.cshtml
 
-12)
+13)
 	Pages:
 		Shared:
 			PartialViews:
@@ -120,17 +128,17 @@ Session (13)
 
 					(Referer)
 
-13)
+14)
 	Pages:
 		ChangeCulture.cshtml
 			httpReferer!
 
-14)
+15)
 	Infrastructure:
 		Middlewares:
 			CultureCookieHandlingMiddleware.cs
 
-15)
+16)
 	Program.cs:
 		app.UseMiddleware
 			<Infrastructure.Middlewares.CultureCookieHandlingMiddleware>();
