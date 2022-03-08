@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿// **************************************************
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+// **************************************************
 
+// **************************************************
 var webApplicationOptions =
 	new Microsoft.AspNetCore.Builder.WebApplicationOptions
 	{
@@ -17,9 +20,12 @@ var webApplicationOptions =
 var builder =
 	Microsoft.AspNetCore.Builder
 	.WebApplication.CreateBuilder(options: webApplicationOptions);
+// **************************************************
 
+// **************************************************
 // AddRazorPages() -> using Microsoft.Extensions.DependencyInjection;
 builder.Services.AddRazorPages();
+// **************************************************
 
 // **************************************************
 // https://www.connectionstrings.com/sql-server/
@@ -53,9 +59,12 @@ builder.Services.AddDbContext<Persistence.DatabaseContext01>(options =>
 });
 // **************************************************
 
+// **************************************************
 var app =
 	builder.Build();
+// **************************************************
 
+// **************************************************
 // IsDevelopment() -> using Microsoft.Extensions.Hosting;
 if (app.Environment.IsDevelopment())
 {
@@ -72,37 +81,43 @@ else
 	// UseHsts() -> using Microsoft.AspNetCore.Builder; 
 	app.UseHsts();
 }
+// **************************************************
 
+// **************************************************
 // UseHttpsRedirection() -> using Microsoft.AspNetCore.Builder;
 app.UseHttpsRedirection();
+// **************************************************
 
+// **************************************************
 // UseStaticFiles() -> using Microsoft.AspNetCore.Builder;
 app.UseStaticFiles();
+// **************************************************
 
-app.Use(async (context, next) =>
-{
-	//var cultureInfo =
-	//	new System.Globalization.CultureInfo(name: "fa");
-
-	var cultureInfo =
-		new System.Globalization.CultureInfo(name: "en");
-
-	System.Threading.Thread.CurrentThread.CurrentCulture = cultureInfo;
-	System.Threading.Thread.CurrentThread.CurrentUICulture = cultureInfo;
-
-	await next();
-});
-
+// **************************************************
 // UseRouting() -> using Microsoft.AspNetCore.Builder;
 app.UseRouting();
+// **************************************************
 
-//// UseAuthorization() -> using Microsoft.AspNetCore.Builder;
+// **************************************************
+// UseAuthorization() -> using Microsoft.AspNetCore.Builder;
 //app.UseAuthentication();
+// **************************************************
 
-//// UseAuthorization() -> using Microsoft.AspNetCore.Builder;
+// **************************************************
+// UseAuthorization() -> using Microsoft.AspNetCore.Builder;
 //app.UseAuthorization();
+// **************************************************
 
+// **************************************************
+// UseMiddleware -> using Microsoft.AspNetCore.Builder;
+app.UseMiddleware<Infrastructure.CultureCookieHandlingMiddleware>();
+// **************************************************
+
+// **************************************************
 // MapRazorPages() -> using Microsoft.AspNetCore.Builder;
 app.MapRazorPages();
+// **************************************************
 
+// **************************************************
 app.Run();
+// **************************************************

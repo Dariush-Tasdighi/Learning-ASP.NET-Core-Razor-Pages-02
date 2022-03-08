@@ -1,0 +1,36 @@
+﻿@*
+	<span class="d-flex">
+	<a href="/ChangeCulture?name=fa" class="nav-link text-dark">
+	فارسی
+	<span class="flag-icon flag-icon-ir"></span>
+	</a>
+	<a href="/ChangeCulture?name=en" class="nav-link text-dark">
+	English
+	<span class="flag-icon flag-icon-us"></span>
+	</a>
+	</span>
+*@
+
+@{
+	var currentCultureName =
+		System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
+}
+
+<span class="d-flex">
+
+	@if (currentCultureName != "fa")
+	{
+		<a href="/ChangeCulture?name=fa" class="nav-link text-dark">
+			فارسی
+			<span class="flag-icon flag-icon-ir"></span>
+		</a>
+	}
+
+	@if (currentCultureName != "en")
+	{
+		<a href="/ChangeCulture?name=en" class="nav-link text-dark">
+			English
+			<span class="flag-icon flag-icon-us"></span>
+		</a>
+	}
+</span>
