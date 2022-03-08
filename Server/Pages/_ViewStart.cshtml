@@ -3,12 +3,15 @@
 
 	var cultureName =
 		System.Threading.Thread
-		.CurrentThread.CurrentUICulture.Name.ToUpper();
+		.CurrentThread.CurrentUICulture.Name
+		.Substring(startIndex: 0, length: 2)
+		.ToLower()
+		;
 
 	switch (cultureName)
 	{
-		case "FA":
-		case "AR":
+		case "fa":
+		case "ar":
 		{
 			Layout =
 				"Layouts/Rtl/_Layout";

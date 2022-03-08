@@ -110,7 +110,8 @@ app.UseRouting();
 
 // **************************************************
 // UseMiddleware -> using Microsoft.AspNetCore.Builder;
-app.UseMiddleware<Infrastructure.CultureCookieHandlingMiddleware>();
+app.UseMiddleware
+	<Infrastructure.Middlewares.CultureCookieHandlingMiddleware>();
 // **************************************************
 
 // **************************************************

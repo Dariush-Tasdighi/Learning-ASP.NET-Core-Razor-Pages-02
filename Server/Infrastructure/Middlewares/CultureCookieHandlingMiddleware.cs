@@ -1,4 +1,4 @@
-﻿namespace Infrastructure
+﻿namespace Infrastructure.Middlewares
 {
 	public class CultureCookieHandlingMiddleware : object
 	{
@@ -31,6 +31,7 @@
 				default:
 				{
 					// می‌خواهیم اول بسم‌الله سایت به چه زبانی باز شود
+
 					SetCulture(cultureName: "fa");
 					//SetCulture(cultureName: "en");
 
