@@ -149,14 +149,14 @@ Tanx Mr. Sadegh Dehghani
 
 **************************************************
 1)
-	Pages:
-		ChangeCulture.cshtml
-			httpReferer!
-
-2)
 	Infrastructure:
 		Middlewares:
 			CultureCookieHandlingMiddleware.cs
+
+2)
+	Pages:
+		ChangeCulture.cshtml
+			httpReferer!
 
 3)
 	Program.cs:
@@ -197,7 +197,7 @@ Tanx Mr. Sadegh Dehghani
 
 		Id				Id
 		Age				CultureId
-		BirthDate		FullName
+		BirthDate		FullName		Dariush Tasdighi	داریوش تصدیقی
 						Description
 **************************************************
 

@@ -8,8 +8,8 @@ namespace Server.Pages
 		{
 		}
 
-		//public void OnGet()
-		//public void OnGet(string name)
+		////public void OnGet()
+		////public void OnGet(string name)
 		//public Microsoft.AspNetCore.Mvc.IActionResult OnGet(string name)
 		//{
 		//	string defaultCulture = "fa";
@@ -22,8 +22,9 @@ namespace Server.Pages
 
 		//	name =
 		//		name
-		//		.Trim()
-		//		.ToLower();
+		//		.Replace(" ", string.Empty)
+		//		.ToLower()
+		//		;
 
 		//	switch (name)
 		//	{
@@ -69,7 +70,7 @@ namespace Server.Pages
 				HttpContext.Request.GetTypedHeaders();
 
 			var httpReferer =
-				typedHeaders.Referer?.AbsoluteUri;
+				typedHeaders?.Referer?.AbsoluteUri;
 
 			if (string.IsNullOrWhiteSpace(httpReferer))
 			{
@@ -88,8 +89,9 @@ namespace Server.Pages
 
 			name =
 				name
-				.Trim()
-				.ToLower();
+				.Replace(" ", string.Empty)
+				.ToLower()
+				;
 
 			switch (name)
 			{
