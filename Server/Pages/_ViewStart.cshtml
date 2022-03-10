@@ -1,14 +1,17 @@
 ﻿@{
 	//Layout = "Layouts/_Layout";
 
-	var cultureName =
-		System.Threading.Thread
-		.CurrentThread.CurrentUICulture.Name
-		.Substring(startIndex: 0, length: 2)
-		.ToLower()
-		;
+	//var currentCultureName =
+	//	System.Threading.Thread.CurrentThread.CurrentUICulture.Name
+	//	.Substring(startIndex: 0, length: 2)
+	//	.ToLower()
+	//	;
 
-	switch (cultureName)
+	var currentCultureName =
+		System.Threading.Thread.CurrentThread
+		.CurrentUICulture.TwoLetterISOLanguageName;
+
+	switch (currentCultureName)
 	{
 		case "fa":
 		case "ar":

@@ -1,15 +1,18 @@
 ﻿@{
-	var cultureName =
-		System.Threading.Thread
-		.CurrentThread.CurrentUICulture.Name
-		.Substring(startIndex: 0, length: 2)
-		.ToLower()
-		;
+	//var currentCultureName =
+	//	System.Threading.Thread.CurrentThread.CurrentUICulture.Name
+	//	.Substring(startIndex: 0, length: 2)
+	//	.ToLower()
+	//	;
+
+	var currentCultureName =
+		System.Threading.Thread.CurrentThread
+		.CurrentUICulture.TwoLetterISOLanguageName;
 }
 
 <!doctype html>
 
-<html lang="@(cultureName)" dir="rtl">
+<html lang="@(currentCultureName)" dir="rtl">
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
