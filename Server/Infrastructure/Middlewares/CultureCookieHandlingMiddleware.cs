@@ -1,17 +1,64 @@
-﻿namespace Infrastructure.Middlewares
+﻿using System.Linq;
+
+namespace Infrastructure.Middlewares
 {
 	public class CultureCookieHandlingMiddleware : object
 	{
 		#region Static Member(s)
 		public readonly static string CookieName = "Culture.Cookie";
 
-		public static void SetCulture(string cultureName)
+		public static string? GetCultureNameByCookie
+			(Microsoft.AspNetCore.Http.HttpContext httpContext,
+			System.Collections.Generic.IList<string>? supportedCultureNames)
 		{
-			var cultureInfo =
-				new System.Globalization.CultureInfo(name: cultureName);
+			if (supportedCultureNames == null ||
+				supportedCultureNames.Count == 0)
+			{
+				return null;
+			}
 
-			System.Threading.Thread.CurrentThread.CurrentCulture = cultureInfo;
-			System.Threading.Thread.CurrentThread.CurrentUICulture = cultureInfo;
+			var cultureName =
+				httpContext.Request.Cookies[key: CookieName];
+
+			if (string.IsNullOrWhiteSpace(cultureName))
+			{
+				return null;
+			}
+
+			cultureName =
+				cultureName
+				.Replace(" ", string.Empty)
+				.Trim()
+				;
+
+			if (cultureName.Length < 2)
+			{
+				return null;
+			}
+
+			cultureName =
+				cultureName
+				.Substring(startIndex: 0, length: 2)
+				;
+
+			if (supportedCultureNames.Contains(cultureName) == false)
+			{
+				return null;
+			}
+
+			return cultureName;
+		}
+
+		public static void SetCulture(string? cultureName)
+		{
+			if (string.IsNullOrWhiteSpace(cultureName) == false)
+			{
+				var cultureInfo =
+					new System.Globalization.CultureInfo(name: cultureName);
+
+				System.Threading.Thread.CurrentThread.CurrentCulture = cultureInfo;
+				System.Threading.Thread.CurrentThread.CurrentUICulture = cultureInfo;
+			}
 		}
 
 		public static void CreateCookie
@@ -79,8 +126,8 @@
 					.ToLower()
 					;
 
-				httpContext.Response.Cookies.Append(key: CookieName,
-					value: cultureName, options: cookieOptions);
+				httpContext.Response.Cookies.Append
+					(key: CookieName, value: cultureName, options: cookieOptions);
 			}
 		}
 		#endregion /Static Member(s)
@@ -94,34 +141,41 @@
 		private Microsoft.AspNetCore.Http.RequestDelegate Next { get; }
 
 		public async System.Threading.Tasks.Task InvokeAsync
-			(Microsoft.AspNetCore.Http.HttpContext httpContext)
+			(Microsoft.AspNetCore.Http.HttpContext httpContext,
+			Microsoft.Extensions.Options.IOptions
+				<Microsoft.AspNetCore.Builder.RequestLocalizationOptions> requestLocalizationOptions)
 		{
-			var cultureName =
-				httpContext.Request.Cookies[key: CookieName]?
-				.Substring(startIndex: 0, length: 2)
-				.ToLower()
+			// **************************************************
+			//var defaultCultureName = "fa";
+
+			var defaultCultureName =
+				requestLocalizationOptions.Value?
+				.DefaultRequestCulture.UICulture.TwoLetterISOLanguageName;
+
+			//var supportedCultureNames = new System.Collections.Generic.List<string>
+			//{
+			//	"fa",
+			//	"en",
+			//};
+
+			var supportedCultureNames =
+				requestLocalizationOptions.Value?.SupportedUICultures?
+				.Select(current => current.Name)
+				.ToList()
 				;
+			// **************************************************
 
-			switch (cultureName)
+			// **************************************************
+			var currentCultureName = GetCultureNameByCookie
+				(httpContext: httpContext, supportedCultureNames: supportedCultureNames);
+
+			if (currentCultureName == null)
 			{
-				case "fa":
-				case "en":
-				{
-					SetCulture(cultureName: cultureName);
-
-					break;
-				}
-
-				default:
-				{
-					// می‌خواهیم اول بسم‌الله سایت به چه زبانی باز شود
-
-					SetCulture(cultureName: "fa");
-					//SetCulture(cultureName: "en");
-
-					break;
-				}
+				currentCultureName = defaultCultureName;
 			}
+
+			SetCulture(cultureName: currentCultureName);
+			// **************************************************
 
 			await Next(context: httpContext);
 		}

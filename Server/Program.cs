@@ -25,6 +25,22 @@ var builder =
 // **************************************************
 // AddRazorPages() -> using Microsoft.Extensions.DependencyInjection;
 builder.Services.AddRazorPages();
+
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+	var supportedCultures = new[]
+	{
+		new System.Globalization.CultureInfo("fa"),
+		new System.Globalization.CultureInfo("en"),
+	};
+
+	options.SupportedCultures = supportedCultures;
+	options.SupportedUICultures = supportedCultures;
+
+	options.DefaultRequestCulture =
+		new Microsoft.AspNetCore.Localization
+		.RequestCulture(culture: "fa", uiCulture: "fa");
+});
 // **************************************************
 
 // **************************************************
