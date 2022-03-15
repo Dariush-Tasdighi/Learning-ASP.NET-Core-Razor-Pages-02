@@ -208,7 +208,11 @@ Session (17)
 **************************************************
 **************************************************
 **************************************************
-- In 'Program.cs':
+1) In 'Shared' solution folder -> In 'Resources' project:
+
+	- Change file names: 'fa' to 'fa-IR'
+
+2) In 'Program.cs':
 
 	- Before 'var app = builder.Build();':
 
@@ -217,8 +221,8 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
 	var supportedCultures = new[]
 	{
-		new System.Globalization.CultureInfo("fa"),
-		new System.Globalization.CultureInfo("en"),
+		new System.Globalization.CultureInfo(name: "fa-IR"),
+		new System.Globalization.CultureInfo(name: "en-US"),
 	};
 
 	options.SupportedCultures = supportedCultures;
@@ -226,7 +230,7 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 
 	options.DefaultRequestCulture =
 		new Microsoft.AspNetCore.Localization
-		.RequestCulture(culture: "fa", uiCulture: "fa");
+		.RequestCulture(culture: "fa-IR", uiCulture: "fa-IR");
 });
 // **************************************************
 
@@ -241,34 +245,47 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 app.UseCultureCookie();
 // **************************************************
 
-- In 'Infrastructure' Folder -> In 'Middlewares' Folder -> In 'CultureCookieHandlerMiddleware.cs' File:
+3) In 'Infrastructure' Folder -> In 'Middlewares' Folder -> In 'CultureCookieHandlerMiddleware.cs' File:
 
 	- Injection in Constructor:
 
 		Microsoft.Extensions.Options.IOptions
 			<Microsoft.AspNetCore.Builder.RequestLocalizationOptions> requestLocalizationOptions
 
-- In 'Infrastructure' Folder -> In 'Middlewares' Folder:
+4) In 'Infrastructure' Folder -> In 'Middlewares' Folder:
+
 	- Check 'ExtensionMethods.cs' File:
 
-- In 'Pages' Folder -> In 'ChangeCulture.cshtml.cs' File:
+5) In 'Pages' Folder -> In 'ChangeCulture.cshtml.cs' File:
 
 	- Injection in Constructor:
 
 		Microsoft.Extensions.Options.IOptions
 			<Microsoft.AspNetCore.Builder.RequestLocalizationOptions> requestLocalizationOptions
 
-- In 'Pages' Folder -> In 'Shared' Folder -> In 'PartialViews' Folder -> In '_ChangeCulture.cshtml' File:
+6) In 'Pages' Folder -> In 'Shared' Folder -> In 'PartialViews' Folder -> In '_ChangeCulture.cshtml' File:
 
-- In 'Pages' Folder -> In 'Shared' Folder -> In 'Layouts' Folder -> In 'Ltr' Folder -> In '_Layout.cshtml' File:
+	@inject Microsoft.Extensions.Options.IOptions
+		<Microsoft.AspNetCore.Builder.RequestLocalizationOptions>? requestLocalizationOptions
 
-	var currentCultureName =
-		System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
-
-- In 'Pages' Folder -> In 'Shared' Folder -> In 'Layouts' Folder -> In 'Rtl' Folder -> In '_Layout.cshtml' File:
+7) In 'Pages' Folder -> In 'Shared' Folder -> In 'Layouts' Folder -> In 'Ltr' Folder -> In '_Layout.cshtml' File:
 
 	var currentCultureName =
-		System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
+		System.Threading.Thread
+		.CurrentThread.CurrentUICulture.Name;
+
+8) In 'Pages' Folder -> In 'Shared' Folder -> In 'Layouts' Folder -> In 'Rtl' Folder -> In '_Layout.cshtml' File:
+
+	var currentCultureName =
+		System.Threading.Thread
+		.CurrentThread.CurrentUICulture.Name;
+
+9) In 'Pages' Folder -> In 'Shared' Folder -> In '_ViewStart.cshtml' File:
+
+	کماکان همان است و تغییر نمی‌دهیم
+	var currentCultureName =
+		System.Threading.Thread.CurrentThread
+		.CurrentUICulture.TwoLetterISOLanguageName;
 **************************************************
 
 **************************************************

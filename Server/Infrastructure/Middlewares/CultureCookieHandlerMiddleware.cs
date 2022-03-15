@@ -116,7 +116,9 @@ namespace Infrastructure.Middlewares
 				<Microsoft.AspNetCore.Builder.RequestLocalizationOptions>? requestLocalizationOptions) : base()
 		{
 			Next = next;
-			RequestLocalizationOptions = requestLocalizationOptions?.Value;
+
+			RequestLocalizationOptions =
+				requestLocalizationOptions?.Value;
 		}
 
 		private Microsoft.AspNetCore.Http.RequestDelegate Next { get; }
@@ -133,11 +135,12 @@ namespace Infrastructure.Middlewares
 				RequestLocalizationOptions?
 				.DefaultRequestCulture.UICulture.Name;
 
-			//var supportedCultureNames = new System.Collections.Generic.List<string>
-			//{
-			//	"fa-IR",
-			//	"en-UK",
-			//};
+			//var supportedCultureNames =
+			//	new System.Collections.Generic.List<string>
+			//	{
+			//		"fa-IR",
+			//		"en-UK",
+			//	};
 
 			var supportedCultureNames =
 				RequestLocalizationOptions?.SupportedUICultures?
@@ -149,7 +152,8 @@ namespace Infrastructure.Middlewares
 			// **************************************************
 			var currentCultureName =
 				GetCultureNameByCookie
-				(httpContext: httpContext, supportedCultureNames: supportedCultureNames);
+				(httpContext: httpContext,
+				supportedCultureNames: supportedCultureNames);
 
 			if (currentCultureName == null)
 			{
