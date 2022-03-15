@@ -139,7 +139,7 @@ namespace Infrastructure.Middlewares
 			//	new System.Collections.Generic.List<string>
 			//	{
 			//		"fa-IR",
-			//		"en-UK",
+			//		"en-US",
 			//	};
 
 			var supportedCultureNames =

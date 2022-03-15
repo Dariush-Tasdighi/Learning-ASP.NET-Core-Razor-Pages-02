@@ -247,6 +247,8 @@ app.UseCultureCookie();
 
 3) In 'Infrastructure' Folder -> In 'Middlewares' Folder -> In 'CultureCookieHandlerMiddleware.cs' File:
 
+	- Rename: CultureCookieHandlingMiddleware -> CultureCookieHandlerMiddleware
+
 	- Injection in Constructor:
 
 		Microsoft.Extensions.Options.IOptions

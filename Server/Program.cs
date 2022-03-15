@@ -35,6 +35,7 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 	{
 		new System.Globalization.CultureInfo(name: "fa-IR"),
 		new System.Globalization.CultureInfo(name: "en-US"),
+		//new System.Globalization.CultureInfo(name: "fr-FR"),
 	};
 
 	options.SupportedCultures = supportedCultures;
@@ -96,7 +97,8 @@ else
 	app.UseExceptionHandler("/Errors/Error");
 
 	// The default HSTS value is 30 days.
-	// You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts
+	// You may want to change this for production scenarios,
+	// see https://aka.ms/aspnetcore-hsts
 	// UseHsts() -> using Microsoft.AspNetCore.Builder; 
 	app.UseHsts();
 }
