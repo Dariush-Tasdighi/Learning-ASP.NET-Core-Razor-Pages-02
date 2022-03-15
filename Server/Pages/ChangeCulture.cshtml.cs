@@ -1,12 +1,19 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace Server.Pages
 {
 	public class ChangeCultureModel : Infrastructure.BasePageModel
 	{
-		public ChangeCultureModel() : base()
+		public ChangeCultureModel
+			(Microsoft.Extensions.Options.IOptions
+			<Microsoft.AspNetCore.Builder.RequestLocalizationOptions>? requestLocalizationOptions) : base()
 		{
+			RequestLocalizationOptions =
+				requestLocalizationOptions?.Value;
 		}
+
+		private Microsoft.AspNetCore.Builder.RequestLocalizationOptions? RequestLocalizationOptions { get; }
 
 		////public void OnGet()
 		////public void OnGet(string name)
@@ -51,18 +58,80 @@ namespace Server.Pages
 		//	//System.Threading.Thread.CurrentThread.CurrentUICulture = cultureInfo;
 
 		//	Infrastructure.Middlewares
-		//		.CultureCookieHandlingMiddleware.SetCulture(cultureName: name);
+		//		.CultureCookieHandlerMiddleware.SetCulture(cultureName: name);
 		//	// **************************************************
 
 		//	// **************************************************
-		//	Infrastructure.Middlewares.CultureCookieHandlingMiddleware
+		//	Infrastructure.Middlewares.CultureCookieHandlerMiddleware
 		//		.CreateCookie(httpContext: HttpContext, cultureName: name);
 		//	// **************************************************
 
 		//	return RedirectToPage(pageName: "/Index");
 		//}
 
-		public Microsoft.AspNetCore.Mvc.IActionResult OnGet(string name)
+		//public Microsoft.AspNetCore.Mvc.IActionResult OnGet(string name)
+		//{
+		//	// **************************************************
+		//	// GetTypedHeaders -> using Microsoft.AspNetCore.Http;
+		//	var typedHeaders =
+		//		HttpContext.Request.GetTypedHeaders();
+
+		//	var httpReferer =
+		//		typedHeaders?.Referer?.AbsoluteUri;
+
+		//	if (string.IsNullOrWhiteSpace(httpReferer))
+		//	{
+		//		return RedirectToPage(pageName: "/Index");
+		//	}
+		//	// **************************************************
+
+		//	// **************************************************
+		//	string defaultCulture = "fa";
+
+		//	if (string.IsNullOrEmpty(name))
+		//	{
+		//		name =
+		//			defaultCulture;
+		//	}
+
+		//	name =
+		//		name
+		//		.Replace(" ", string.Empty)
+		//		.ToLower()
+		//		;
+
+		//	switch (name)
+		//	{
+		//		case "fa":
+		//		case "en":
+		//		{
+		//			break;
+		//		}
+
+		//		default:
+		//		{
+		//			name =
+		//				defaultCulture;
+
+		//			break;
+		//		}
+		//	}
+		//	// **************************************************
+
+		//	// **************************************************
+		//	Infrastructure.Middlewares
+		//		.CultureCookieHandlerMiddleware.SetCulture(cultureName: name);
+		//	// **************************************************
+
+		//	// **************************************************
+		//	Infrastructure.Middlewares.CultureCookieHandlerMiddleware
+		//		.CreateCookie(httpContext: HttpContext, cultureName: name);
+		//	// **************************************************
+
+		//	return Redirect(url: httpReferer);
+		//}
+
+		public Microsoft.AspNetCore.Mvc.IActionResult OnGet(string? cultureName)
 		{
 			// **************************************************
 			// GetTypedHeaders -> using Microsoft.AspNetCore.Http;
@@ -79,46 +148,56 @@ namespace Server.Pages
 			// **************************************************
 
 			// **************************************************
-			string defaultCulture = "fa";
+			var defaultCultureName =
+				RequestLocalizationOptions?
+				.DefaultRequestCulture.UICulture.TwoLetterISOLanguageName;
 
-			if (string.IsNullOrEmpty(name))
+			var supportedCultureNames =
+				RequestLocalizationOptions?.SupportedUICultures?
+				.Select(current => current.Name)
+				.ToList()
+				;
+			// **************************************************
+
+			// **************************************************
+			if (string.IsNullOrWhiteSpace(cultureName))
 			{
-				name =
-					defaultCulture;
+				cultureName =
+					defaultCultureName;
 			}
 
-			name =
-				name
+			cultureName =
+				cultureName?
 				.Replace(" ", string.Empty)
 				.ToLower()
 				;
+			// **************************************************
 
-			switch (name)
+			// **************************************************
+			//if (supportedCultureNames?.Contains(item: cultureName) == false)
+			//{
+			//	cultureName =
+			//		defaultCultureName;
+			//}
+
+			if (supportedCultureNames?.Contains(item: cultureName!) == false)
 			{
-				case "fa":
-				case "en":
-				{
-					break;
-				}
-
-				default:
-				{
-					name =
-						defaultCulture;
-
-					break;
-				}
+				cultureName =
+					defaultCultureName;
 			}
 			// **************************************************
 
 			// **************************************************
 			Infrastructure.Middlewares
-				.CultureCookieHandlingMiddleware.SetCulture(cultureName: name);
+				.CultureCookieHandlerMiddleware.SetCulture(cultureName: cultureName);
 			// **************************************************
 
 			// **************************************************
-			Infrastructure.Middlewares.CultureCookieHandlingMiddleware
-				.CreateCookie(httpContext: HttpContext, cultureName: name);
+			//Infrastructure.Middlewares.CultureCookieHandlerMiddleware
+			//	.CreateCookie(httpContext: HttpContext, cultureName: cultureName);
+
+			Infrastructure.Middlewares.CultureCookieHandlerMiddleware
+				.CreateCookie(httpContext: HttpContext, cultureName: cultureName!);
 			// **************************************************
 
 			return Redirect(url: httpReferer);

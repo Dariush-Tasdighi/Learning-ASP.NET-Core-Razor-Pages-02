@@ -2,7 +2,7 @@
 
 namespace Infrastructure.Middlewares
 {
-	public class CultureCookieHandlingMiddleware : object
+	public class CultureCookieHandlerMiddleware : object
 	{
 		#region Static Member(s)
 		public readonly static string CookieName = "Culture.Cookie";
@@ -36,10 +36,15 @@ namespace Infrastructure.Middlewares
 				return null;
 			}
 
+			// **************************************************
+			//cultureName =
+			//	cultureName
+			//	.Substring(startIndex: 0, length: 2)
+			//	;
+
 			cultureName =
-				cultureName
-				.Substring(startIndex: 0, length: 2)
-				;
+				cultureName[..2];
+			// **************************************************
 
 			if (supportedCultureNames.Contains(cultureName) == false)
 			{
@@ -121,10 +126,7 @@ namespace Infrastructure.Middlewares
 			if (string.IsNullOrWhiteSpace(cultureName) == false)
 			{
 				cultureName =
-					cultureName
-					.Substring(startIndex: 0, length: 2)
-					.ToLower()
-					;
+					cultureName[..2].ToLower();
 
 				httpContext.Response.Cookies.Append
 					(key: CookieName, value: cultureName, options: cookieOptions);
@@ -132,24 +134,27 @@ namespace Infrastructure.Middlewares
 		}
 		#endregion /Static Member(s)
 
-		public CultureCookieHandlingMiddleware
-			(Microsoft.AspNetCore.Http.RequestDelegate next) : base()
+		public CultureCookieHandlerMiddleware
+			(Microsoft.AspNetCore.Http.RequestDelegate next,
+			Microsoft.Extensions.Options.IOptions
+				<Microsoft.AspNetCore.Builder.RequestLocalizationOptions>? requestLocalizationOptions) : base()
 		{
 			Next = next;
+			RequestLocalizationOptions = requestLocalizationOptions?.Value;
 		}
 
 		private Microsoft.AspNetCore.Http.RequestDelegate Next { get; }
 
+		private Microsoft.AspNetCore.Builder.RequestLocalizationOptions? RequestLocalizationOptions { get; }
+
 		public async System.Threading.Tasks.Task InvokeAsync
-			(Microsoft.AspNetCore.Http.HttpContext httpContext,
-			Microsoft.Extensions.Options.IOptions
-				<Microsoft.AspNetCore.Builder.RequestLocalizationOptions> requestLocalizationOptions)
+			(Microsoft.AspNetCore.Http.HttpContext httpContext)
 		{
 			// **************************************************
 			//var defaultCultureName = "fa";
 
 			var defaultCultureName =
-				requestLocalizationOptions.Value?
+				RequestLocalizationOptions?
 				.DefaultRequestCulture.UICulture.TwoLetterISOLanguageName;
 
 			//var supportedCultureNames = new System.Collections.Generic.List<string>
@@ -159,14 +164,15 @@ namespace Infrastructure.Middlewares
 			//};
 
 			var supportedCultureNames =
-				requestLocalizationOptions.Value?.SupportedUICultures?
+				RequestLocalizationOptions?.SupportedUICultures?
 				.Select(current => current.Name)
 				.ToList()
 				;
 			// **************************************************
 
 			// **************************************************
-			var currentCultureName = GetCultureNameByCookie
+			var currentCultureName =
+				GetCultureNameByCookie
 				(httpContext: httpContext, supportedCultureNames: supportedCultureNames);
 
 			if (currentCultureName == null)

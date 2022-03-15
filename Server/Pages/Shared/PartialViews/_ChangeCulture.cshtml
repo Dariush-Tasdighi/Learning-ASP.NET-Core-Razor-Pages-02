@@ -1,13 +1,13 @@
 ﻿@*
 	<span class="d-flex">
-		<a href="/ChangeCulture?name=fa" class="nav-link text-dark">
-			فارسی
-			<span class="flag-icon flag-icon-ir"></span>
-		</a>
-		<a href="/ChangeCulture?name=en" class="nav-link text-dark">
-			English
-			<span class="flag-icon flag-icon-us"></span>
-		</a>
+	<a href="/ChangeCulture?name=fa" class="nav-link text-dark">
+	فارسی
+	<span class="flag-icon flag-icon-ir"></span>
+	</a>
+	<a href="/ChangeCulture?name=en" class="nav-link text-dark">
+	English
+	<span class="flag-icon flag-icon-us"></span>
+	</a>
 	</span>
 *@
 
@@ -23,20 +23,72 @@
 		.CurrentUICulture.TwoLetterISOLanguageName;
 }
 
-<span class="d-flex">
+@*
+	<span class="d-flex">
 	@if (currentCultureName != "fa")
 	{
-		<a href="/ChangeCulture?name=fa" class="nav-link text-dark">
-			فارسی
-			<span class="flag-icon flag-icon-ir"></span>
-		</a>
+	<a href="/ChangeCulture?name=fa" class="nav-link text-dark">
+	فارسی
+	<span class="flag-icon flag-icon-ir"></span>
+	</a>
 	}
 
 	@if (currentCultureName != "en")
 	{
-		<a href="/ChangeCulture?name=en" class="nav-link text-dark">
-			English
-			<span class="flag-icon flag-icon-us"></span>
-		</a>
+	<a href="/ChangeCulture?name=en" class="nav-link text-dark">
+	English
+	<span class="flag-icon flag-icon-us"></span>
+	</a>
+	}
+	</span>
+*@
+
+@inject Microsoft.Extensions.Options.IOptions<Microsoft.AspNetCore.Builder.RequestLocalizationOptions>? requestLocalizationOptions
+
+@{
+	if (requestLocalizationOptions == null)
+	{
+		return;
+	}
+
+	if (requestLocalizationOptions.Value == null)
+	{
+		return;
+	}
+
+	var supportedUICultures =
+		requestLocalizationOptions.Value.SupportedUICultures;
+
+	if (supportedUICultures == null)
+	{
+		return;
+	}
+
+	if (supportedUICultures?.Count <= 1)
+	{
+		return;
+	}
+}
+
+<span class="d-flex">
+	@foreach (var item in supportedUICultures!)
+	{
+		if (currentCultureName != item.TwoLetterISOLanguageName)
+		{
+			<a href="/ChangeCulture/@(item.TwoLetterISOLanguageName)" class="nav-link text-dark">
+				@*
+					@(item.Name)
+				*@
+				@(item.NativeName)
+				@*
+					@(item.DisplayName)
+				*@				@*
+					@(item.EnglishName)
+				*@
+				@*
+					<span class="flag-icon flag-icon-ir"></span>
+				*@
+			</a>
+		}
 	}
 </span>

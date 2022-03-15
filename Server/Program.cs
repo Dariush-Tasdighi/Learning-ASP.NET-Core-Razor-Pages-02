@@ -1,4 +1,5 @@
 ﻿// **************************************************
+using Infrastructure.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -25,7 +26,9 @@ var builder =
 // **************************************************
 // AddRazorPages() -> using Microsoft.Extensions.DependencyInjection;
 builder.Services.AddRazorPages();
+// **************************************************
 
+// **************************************************
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
 	var supportedCultures = new[]
@@ -126,8 +129,11 @@ app.UseRouting();
 
 // **************************************************
 // UseMiddleware -> using Microsoft.AspNetCore.Builder;
-app.UseMiddleware
-	<Infrastructure.Middlewares.CultureCookieHandlingMiddleware>();
+//app.UseMiddleware
+//	<Infrastructure.Middlewares.CultureCookieHandlerMiddleware>();
+
+// UseCultureCookie() -> using Infrastructure.Middlewares;
+app.UseCultureCookie();
 // **************************************************
 
 // **************************************************

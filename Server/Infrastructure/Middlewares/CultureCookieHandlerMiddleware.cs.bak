@@ -2,7 +2,7 @@
 
 //namespace Infrastructure.Middlewares
 //{
-//	public class CultureCookieHandlingMiddleware : object
+//	public class CultureCookieHandlerMiddleware : object
 //	{
 //		#region Class
 //		private class PathParts : object
@@ -181,7 +181,7 @@
 //		}
 //		#endregion /Static Member(s)
 
-//		public CultureCookieHandlingMiddleware
+//		public CultureCookieHandlerMiddleware
 //			(Microsoft.AspNetCore.Http.RequestDelegate next) : base()
 //		{
 //			Next = next;
