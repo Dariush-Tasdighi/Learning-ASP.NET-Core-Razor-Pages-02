@@ -25,27 +25,6 @@ namespace Infrastructure.Middlewares
 				return null;
 			}
 
-			cultureName =
-				cultureName
-				.Replace(" ", string.Empty)
-				.Trim()
-				;
-
-			if (cultureName.Length < 2)
-			{
-				return null;
-			}
-
-			// **************************************************
-			//cultureName =
-			//	cultureName
-			//	.Substring(startIndex: 0, length: 2)
-			//	;
-
-			cultureName =
-				cultureName[..2];
-			// **************************************************
-
 			if (supportedCultureNames.Contains(cultureName) == false)
 			{
 				return null;
@@ -125,9 +104,6 @@ namespace Infrastructure.Middlewares
 
 			if (string.IsNullOrWhiteSpace(cultureName) == false)
 			{
-				cultureName =
-					cultureName[..2].ToLower();
-
 				httpContext.Response.Cookies.Append
 					(key: CookieName, value: cultureName, options: cookieOptions);
 			}
@@ -151,16 +127,16 @@ namespace Infrastructure.Middlewares
 			(Microsoft.AspNetCore.Http.HttpContext httpContext)
 		{
 			// **************************************************
-			//var defaultCultureName = "fa";
+			//var defaultCultureName = "fa-IR";
 
 			var defaultCultureName =
 				RequestLocalizationOptions?
-				.DefaultRequestCulture.UICulture.TwoLetterISOLanguageName;
+				.DefaultRequestCulture.UICulture.Name;
 
 			//var supportedCultureNames = new System.Collections.Generic.List<string>
 			//{
-			//	"fa",
-			//	"en",
+			//	"fa-IR",
+			//	"en-UK",
 			//};
 
 			var supportedCultureNames =

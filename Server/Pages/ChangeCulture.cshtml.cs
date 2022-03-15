@@ -150,7 +150,7 @@ namespace Server.Pages
 			// **************************************************
 			var defaultCultureName =
 				RequestLocalizationOptions?
-				.DefaultRequestCulture.UICulture.TwoLetterISOLanguageName;
+				.DefaultRequestCulture.UICulture.Name;
 
 			var supportedCultureNames =
 				RequestLocalizationOptions?.SupportedUICultures?
@@ -165,12 +165,6 @@ namespace Server.Pages
 				cultureName =
 					defaultCultureName;
 			}
-
-			cultureName =
-				cultureName?
-				.Replace(" ", string.Empty)
-				.ToLower()
-				;
 			// **************************************************
 
 			// **************************************************

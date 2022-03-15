@@ -18,9 +18,9 @@
 	//	.ToLower()
 	//	;
 
-	var currentCultureName =
-		System.Threading.Thread.CurrentThread
-		.CurrentUICulture.TwoLetterISOLanguageName;
+	//var currentCultureName =
+	//	System.Threading.Thread.CurrentThread
+	//	.CurrentUICulture.TwoLetterISOLanguageName;
 }
 
 @*
@@ -68,26 +68,30 @@
 	{
 		return;
 	}
+
+	var currentCultureName =
+		System.Threading.Thread
+		.CurrentThread.CurrentUICulture.Name;
 }
 
 <span class="d-flex">
 	@foreach (var item in supportedUICultures!)
 	{
-		if (currentCultureName != item.TwoLetterISOLanguageName)
+		@*
+			var name = item.Name;
+			var nativeName = item.NativeName;
+			var displayName = item.DisplayName;
+			var englishName = item.EnglishName;
+		*@
+
+		var country = item.Name[3..].ToLower();
+		var language = item.NativeName[..(item.NativeName.IndexOf('(') - 1)];
+
+		if (currentCultureName != item.Name)
 		{
-			<a href="/ChangeCulture/@(item.TwoLetterISOLanguageName)" class="nav-link text-dark">
-				@*
-					@(item.Name)
-				*@
-				@(item.NativeName)
-				@*
-					@(item.DisplayName)
-				*@				@*
-					@(item.EnglishName)
-				*@
-				@*
-					<span class="flag-icon flag-icon-ir"></span>
-				*@
+			<a href="/ChangeCulture/@(item.Name)" class="nav-link text-dark">
+				@(language)
+				<span class="flag-icon flag-icon-@(country)"></span>
 			</a>
 		}
 	}

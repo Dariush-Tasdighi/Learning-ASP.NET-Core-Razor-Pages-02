@@ -33,8 +33,8 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
 	var supportedCultures = new[]
 	{
-		new System.Globalization.CultureInfo("fa"),
-		new System.Globalization.CultureInfo("en"),
+		new System.Globalization.CultureInfo(name: "fa-IR"),
+		new System.Globalization.CultureInfo(name: "en-US"),
 	};
 
 	options.SupportedCultures = supportedCultures;
@@ -42,7 +42,7 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 
 	options.DefaultRequestCulture =
 		new Microsoft.AspNetCore.Localization
-		.RequestCulture(culture: "fa", uiCulture: "fa");
+		.RequestCulture(culture: "fa-IR", uiCulture: "fa-IR");
 });
 // **************************************************
 
