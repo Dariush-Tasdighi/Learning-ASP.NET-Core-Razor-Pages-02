@@ -11,11 +11,11 @@ using Microsoft.Extensions.DependencyInjection;
 var webApplicationOptions =
 	new Microsoft.AspNetCore.Builder.WebApplicationOptions
 	{
-		EnvironmentName =
-			Microsoft.Extensions.Hosting.Environments.Development,
-
 		//EnvironmentName =
 		//	Microsoft.Extensions.Hosting.Environments.Production,
+
+		EnvironmentName =
+			Microsoft.Extensions.Hosting.Environments.Development,
 	};
 
 var builder =
@@ -28,23 +28,29 @@ var builder =
 builder.Services.AddRazorPages();
 // **************************************************
 
+//// **************************************************
+//builder.Services.Configure<RequestLocalizationOptions>(options =>
+//{
+//	var supportedCultures = new[]
+//	{
+//		new System.Globalization.CultureInfo(name: "fa-IR"),
+//		new System.Globalization.CultureInfo(name: "en-US"),
+//		//new System.Globalization.CultureInfo(name: "fr-FR"),
+//	};
+
+//	options.SupportedCultures = supportedCultures;
+//	options.SupportedUICultures = supportedCultures;
+
+//	options.DefaultRequestCulture =
+//		new Microsoft.AspNetCore.Localization
+//		.RequestCulture(culture: "fa-IR", uiCulture: "fa-IR");
+//});
+//// **************************************************
+
 // **************************************************
-builder.Services.Configure<RequestLocalizationOptions>(options =>
-{
-	var supportedCultures = new[]
-	{
-		new System.Globalization.CultureInfo(name: "fa-IR"),
-		new System.Globalization.CultureInfo(name: "en-US"),
-		//new System.Globalization.CultureInfo(name: "fr-FR"),
-	};
-
-	options.SupportedCultures = supportedCultures;
-	options.SupportedUICultures = supportedCultures;
-
-	options.DefaultRequestCulture =
-		new Microsoft.AspNetCore.Localization
-		.RequestCulture(culture: "fa-IR", uiCulture: "fa-IR");
-});
+// Configure() -> using Microsoft.Extensions.DependencyInjection;
+builder.Services.Configure<Infrastructure.Settings.ApplicationSettings>
+	(builder.Configuration.GetSection(key: Infrastructure.Settings.ApplicationSettings.KeyName));
 // **************************************************
 
 // **************************************************

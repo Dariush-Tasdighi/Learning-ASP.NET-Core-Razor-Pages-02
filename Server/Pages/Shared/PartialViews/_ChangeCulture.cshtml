@@ -11,6 +11,8 @@
 	</span>
 *@
 
+
+
 @{
 	//var currentCultureName =
 	//	System.Threading.Thread.CurrentThread.CurrentUICulture.Name
@@ -43,28 +45,87 @@
 	</span>
 *@
 
-@inject Microsoft.Extensions.Options.IOptions<Microsoft.AspNetCore.Builder.RequestLocalizationOptions>? requestLocalizationOptions
 
-@{
+
+@*
+	@inject Microsoft.Extensions.Options.IOptions<Microsoft.AspNetCore.Builder.RequestLocalizationOptions>? requestLocalizationOptions
+
+	@{
 	if (requestLocalizationOptions == null)
 	{
-		return;
+	return;
 	}
 
 	if (requestLocalizationOptions.Value == null)
 	{
-		return;
+	return;
 	}
 
 	var supportedUICultures =
-		requestLocalizationOptions.Value.SupportedUICultures;
+	requestLocalizationOptions.Value.SupportedUICultures;
 
 	if (supportedUICultures == null)
+	{
+	return;
+	}
+
+	if (supportedUICultures?.Count <= 1)
+	{
+	return;
+	}
+
+	var currentCultureName =
+	System.Threading.Thread
+	.CurrentThread.CurrentUICulture.Name;
+	}
+
+	<span class="d-flex">
+	@foreach (var item in supportedUICultures!)
+	{
+	//var name = item.Name;
+	//var nativeName = item.NativeName;
+	//var displayName = item.DisplayName;
+	//var englishName = item.EnglishName;
+
+	var country = item.Name[3..].ToLower();
+	var language = item.NativeName[..(item.NativeName.IndexOf('(') - 1)];
+
+	if (currentCultureName != item.Name)
+	{
+	<a href="/ChangeCulture/@(item.Name)" class="nav-link text-dark">
+	@(language)
+	<span class="flag-icon flag-icon-@(country)"></span>
+	</a>
+	}
+	}
+	</span>
+*@
+
+
+
+@inject Microsoft.Extensions.Options.IOptions<Infrastructure.Settings.ApplicationSettings> applicationSettingsOptions
+
+@{
+	var applicationSettings =
+		applicationSettingsOptions.Value;
+
+	if (applicationSettings == null)
 	{
 		return;
 	}
 
-	if (supportedUICultures?.Count <= 1)
+	var cultureSettings =
+		applicationSettings.CultureSettings;
+
+	if (cultureSettings == null)
+	{
+		return;
+	}
+
+	var supportedCultureNames =
+		cultureSettings.SupportedCultureNames;
+
+	if (supportedCultureNames == null || supportedCultureNames.Length <= 1)
 	{
 		return;
 	}
@@ -75,24 +136,21 @@
 }
 
 <span class="d-flex">
-	@foreach (var item in supportedUICultures!)
+	@foreach (var supportedCultureName in supportedCultureNames)
 	{
-		@*
-			var name = item.Name;
-			var nativeName = item.NativeName;
-			var displayName = item.DisplayName;
-			var englishName = item.EnglishName;
-		*@
+		var supportedCulture = new System.Globalization.CultureInfo(name: supportedCultureName);
 
-		var country = item.Name[3..].ToLower();
-		var language = item.NativeName[..(item.NativeName.IndexOf('(') - 1)];
+		var country = supportedCultureName[3..].ToLower();
 
-		if (currentCultureName != item.Name)
+		var language = supportedCulture.NativeName[..(supportedCulture.NativeName.IndexOf('(') - 1)];
+
+		if (currentCultureName != supportedCultureName)
 		{
-			<a href="/ChangeCulture/@(item.Name)" class="nav-link text-dark">
+			<a href="/ChangeCulture/@(supportedCultureName)" class="nav-link text-dark">
 				@(language)
 				<span class="flag-icon flag-icon-@(country)"></span>
 			</a>
 		}
 	}
 </span>
+

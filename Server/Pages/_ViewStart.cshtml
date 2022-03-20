@@ -7,27 +7,40 @@
 	//	.ToLower()
 	//	;
 
-	var currentCultureName =
-		System.Threading.Thread.CurrentThread
-		.CurrentUICulture.TwoLetterISOLanguageName;
+	//var currentCultureName =
+	//	System.Threading.Thread.CurrentThread
+	//	.CurrentUICulture.TwoLetterISOLanguageName;
 
-	switch (currentCultureName)
-	{
-		case "fa":
-		case "ar":
-		{
-			Layout =
-				"Layouts/Rtl/_Layout";
+	//switch (currentCultureName)
+	//{
+	//	case "fa":
+	//	case "ar":
+	//	{
+	//		Layout =
+	//			"Layouts/Rtl/_Layout";
 
-			break;
-		}
+	//		break;
+	//	}
 
-		default:
-		{
-			Layout =
-				"Layouts/Ltr/_Layout";
+	//	default:
+	//	{
+	//		Layout =
+	//			"Layouts/Ltr/_Layout";
 
-			break;
-		}
-	}
+	//		break;
+	//	}
+	//}
+}
+
+
+
+@if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+{
+	Layout =
+		"Layouts/Rtl/_Layout";
+}
+else
+{
+	Layout =
+		"Layouts/Ltr/_Layout";
 }
